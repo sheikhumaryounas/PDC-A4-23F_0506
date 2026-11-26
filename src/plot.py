@@ -7,6 +7,7 @@ writes  figures/
           2_speedup_vs_p.png     (ii)  speedup vs p + ideal linear speedup (dashed)
           3_efficiency_vs_p.png  (iii) efficiency vs p, one line per n
           4_overhead_vs_p.png    (iv)  total overhead T_o vs p
+          5_dashboard.png        (v)   all four as a 2x2 dashboard
 
     python src/plot.py
 """
@@ -104,6 +105,20 @@ def main():
         fig.savefig(FIGS / fname, dpi=130)
         plt.close(fig)
         print(f"saved figures/{fname}")
+    dashboard(m)
+
+
+def dashboard(m):
+    """(v) all four plots as subplots of one figure."""
+    fig, axes = plt.subplots(2, 2, figsize=(13, 9.5))
+    for ax, (_, draw) in zip(axes.flat, PLOTS):
+        draw(ax, m)
+    fig.suptitle("Monte-Carlo pi: serial vs multiprocessing performance "
+                 "(medians of 5 runs)", fontsize=14)
+    fig.tight_layout()
+    fig.savefig(FIGS / "5_dashboard.png", dpi=130)
+    plt.close(fig)
+    print("saved figures/5_dashboard.png")
 
 
 if __name__ == "__main__":
