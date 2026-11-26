@@ -1,0 +1,17 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# editor / os
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# assignment handout and submission zip (not part of the code)
+*.docx
+*.pdf
+*.zip
