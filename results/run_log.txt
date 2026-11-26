@@ -1,0 +1,125 @@
+2026-11-26 21:28  Windows-11-10.0.26300-SP0  Python 3.12.10  numpy 2.5.2
+Monte-Carlo pi | sizes=[1000000, 10000000, 100000000] procs=[1, 2, 4, 8] runs=5 | logical CPUs=8
+  [pool with 1 worker(s) started in 0.599 s]
+  [pool with 2 worker(s) started in 0.762 s]
+  [pool with 4 worker(s) started in 0.922 s]
+  [pool with 8 worker(s) started in 1.104 s]
+-- round 1/5
+  serial    n=   1,000,000        run 1    0.0169 s   pi~3.14226
+  parallel  n=   1,000,000  p=1  run 1    0.0188 s   pi~3.13817
+  parallel  n=   1,000,000  p=2  run 1    0.0080 s   pi~3.14401
+  parallel  n=   1,000,000  p=4  run 1    0.0376 s   pi~3.14133
+  parallel  n=   1,000,000  p=8  run 1    0.0576 s   pi~3.14002
+  serial    n=  10,000,000        run 1    0.1869 s   pi~3.14125
+  parallel  n=  10,000,000  p=1  run 1    0.1928 s   pi~3.14039
+  parallel  n=  10,000,000  p=2  run 1    0.1255 s   pi~3.14164
+  parallel  n=  10,000,000  p=4  run 1    0.0650 s   pi~3.14168
+  parallel  n=  10,000,000  p=8  run 1    0.0392 s   pi~3.14090
+  serial    n= 100,000,000        run 1    2.0834 s   pi~3.14148
+  parallel  n= 100,000,000  p=1  run 1    1.9576 s   pi~3.14154
+  parallel  n= 100,000,000  p=2  run 1    1.1459 s   pi~3.14165
+  parallel  n= 100,000,000  p=4  run 1    0.8634 s   pi~3.14164
+  parallel  n= 100,000,000  p=8  run 1    0.5731 s   pi~3.14134
+-- round 2/5
+  serial    n=   1,000,000        run 2    0.0293 s   pi~3.14322
+  parallel  n=   1,000,000  p=1  run 2    0.0269 s   pi~3.14131
+  parallel  n=   1,000,000  p=2  run 2    0.0184 s   pi~3.14187
+  parallel  n=   1,000,000  p=4  run 2    0.0102 s   pi~3.13938
+  parallel  n=   1,000,000  p=8  run 2    0.0116 s   pi~3.14218
+  serial    n=  10,000,000        run 2    0.2266 s   pi~3.14074
+  parallel  n=  10,000,000  p=1  run 2    0.2702 s   pi~3.14176
+  parallel  n=  10,000,000  p=2  run 2    0.1018 s   pi~3.14048
+  parallel  n=  10,000,000  p=4  run 2    0.0834 s   pi~3.14164
+  parallel  n=  10,000,000  p=8  run 2    0.0517 s   pi~3.14152
+  serial    n= 100,000,000        run 2    1.9942 s   pi~3.14134
+  parallel  n= 100,000,000  p=1  run 2    1.8460 s   pi~3.14181
+  parallel  n= 100,000,000  p=2  run 2    1.2696 s   pi~3.14151
+  parallel  n= 100,000,000  p=4  run 2    0.7351 s   pi~3.14140
+  parallel  n= 100,000,000  p=8  run 2    0.4729 s   pi~3.14146
+-- round 3/5
+  serial    n=   1,000,000        run 3    0.0167 s   pi~3.13802
+  parallel  n=   1,000,000  p=1  run 3    0.0238 s   pi~3.14274
+  parallel  n=   1,000,000  p=2  run 3    0.0164 s   pi~3.14162
+  parallel  n=   1,000,000  p=4  run 3    0.0112 s   pi~3.14012
+  parallel  n=   1,000,000  p=8  run 3    0.0088 s   pi~3.14116
+  serial    n=  10,000,000        run 3    0.2477 s   pi~3.14138
+  parallel  n=  10,000,000  p=1  run 3    0.2017 s   pi~3.14175
+  parallel  n=  10,000,000  p=2  run 3    0.1162 s   pi~3.14181
+  parallel  n=  10,000,000  p=4  run 3    0.0733 s   pi~3.14131
+  parallel  n=  10,000,000  p=8  run 3    0.0463 s   pi~3.14225
+  serial    n= 100,000,000        run 3    1.8968 s   pi~3.14157
+  parallel  n= 100,000,000  p=1  run 3    2.2687 s   pi~3.14164
+  parallel  n= 100,000,000  p=2  run 3    1.4602 s   pi~3.14165
+  parallel  n= 100,000,000  p=4  run 3    0.7301 s   pi~3.14168
+  parallel  n= 100,000,000  p=8  run 3    0.4564 s   pi~3.14178
+-- round 4/5
+  serial    n=   1,000,000        run 4    0.0165 s   pi~3.13913
+  parallel  n=   1,000,000  p=1  run 4    0.0289 s   pi~3.13956
+  parallel  n=   1,000,000  p=2  run 4    0.0140 s   pi~3.14205
+  parallel  n=   1,000,000  p=4  run 4    0.0123 s   pi~3.13951
+  parallel  n=   1,000,000  p=8  run 4    0.0083 s   pi~3.14220
+  serial    n=  10,000,000        run 4    0.1763 s   pi~3.14166
+  parallel  n=  10,000,000  p=1  run 4    0.1692 s   pi~3.14074
+  parallel  n=  10,000,000  p=2  run 4    0.1413 s   pi~3.14187
+  parallel  n=  10,000,000  p=4  run 4    0.0715 s   pi~3.14134
+  parallel  n=  10,000,000  p=8  run 4    0.0518 s   pi~3.14135
+  serial    n= 100,000,000        run 4    1.9400 s   pi~3.14156
+  parallel  n= 100,000,000  p=1  run 4    1.8969 s   pi~3.14146
+  parallel  n= 100,000,000  p=2  run 4    1.2578 s   pi~3.14146
+  parallel  n= 100,000,000  p=4  run 4    0.7863 s   pi~3.14155
+  parallel  n= 100,000,000  p=8  run 4    0.4396 s   pi~3.14142
+-- round 5/5
+  serial    n=   1,000,000        run 5    0.0282 s   pi~3.13884
+  parallel  n=   1,000,000  p=1  run 5    0.0205 s   pi~3.14368
+  parallel  n=   1,000,000  p=2  run 5    0.0125 s   pi~3.14163
+  parallel  n=   1,000,000  p=4  run 5    0.0089 s   pi~3.14328
+  parallel  n=   1,000,000  p=8  run 5    0.0085 s   pi~3.14190
+  serial    n=  10,000,000        run 5    0.1812 s   pi~3.14208
+  parallel  n=  10,000,000  p=1  run 5    0.1713 s   pi~3.14233
+  parallel  n=  10,000,000  p=2  run 5    0.1121 s   pi~3.14211
+  parallel  n=  10,000,000  p=4  run 5    0.0734 s   pi~3.14158
+  parallel  n=  10,000,000  p=8  run 5    0.0449 s   pi~3.14130
+  serial    n= 100,000,000        run 5    1.8656 s   pi~3.14155
+  parallel  n= 100,000,000  p=1  run 5    1.7847 s   pi~3.14156
+  parallel  n= 100,000,000  p=2  run 5    1.1028 s   pi~3.14166
+  parallel  n= 100,000,000  p=4  run 5    0.6935 s   pi~3.14141
+  parallel  n= 100,000,000  p=8  run 5    0.5334 s   pi~3.14151
+
+saved 75 rows -> results/raw_timings.csv (benchmark took 39.3 s)
+
+Performance metrics (T_S and T_P are medians of the runs)
+------------------------------------------------------------------------------------------
+            n   p    T_S (s)    T_P (s)  Speedup  Effic.   Cost (s)    T_o (s)  f (Amdahl)
+------------------------------------------------------------------------------------------
+    1,000,000   1     0.0169     0.0238    0.712   0.712     0.0238     0.0068           -
+    1,000,000   2     0.0169     0.0140    1.209   0.604     0.0280     0.0111      0.6544
+    1,000,000   4     0.0169     0.0112    1.511   0.378     0.0448     0.0279      0.5489
+    1,000,000   8     0.0169     0.0088    1.914   0.239     0.0707     0.0538      0.4542
+------------------------------------------------------------------------------------------
+   10,000,000   1     0.1869     0.1928    0.969   0.969     0.1928     0.0059           -
+   10,000,000   2     0.1869     0.1162    1.608   0.804     0.2325     0.0456      0.2441
+   10,000,000   4     0.1869     0.0733    2.550   0.637     0.2931     0.1063      0.1896
+   10,000,000   8     0.1869     0.0463    4.035   0.504     0.3705     0.1836      0.1404
+------------------------------------------------------------------------------------------
+  100,000,000   1     1.9400     1.8969    1.023   1.023     1.8969    -0.0430           -
+  100,000,000   2     1.9400     1.2578    1.542   0.771     2.5156     0.5756      0.2967
+  100,000,000   4     1.9400     0.7351    2.639   0.660     2.9404     1.0004      0.1719
+  100,000,000   8     1.9400     0.4729    4.102   0.513     3.7833     1.8433      0.1357
+------------------------------------------------------------------------------------------
+
+Bonus - problem size needed to keep E >= 0.6 as p doubles
+  model:  T_S(n) ~ -2.271e-03 + 1.917e-08*n s,   T_o(n,p) ~ a_p + b_p*n s
+  p=2: measured E >= 0.6 first at n = 1,000,000
+  p=4: measured E >= 0.6 first at n = 10,000,000
+  p=8: measured E >= 0.6 first at n = none of the measured sizes
+  p=2: a_p=6.02e-03 s, b_p=4.67e-09 s/sample, E_inf=0.80  ->  n >= 929,057
+  p=4: a_p=1.81e-02 s, b_p=9.37e-09 s/sample, E_inf=0.67  ->  n >= 5,768,376   (6.2x the size needed at p=2)
+  p=8: a_p=3.60e-02 s, b_p=1.65e-08 s/sample, E_inf=0.54  ->  not reachable - E_inf = 0.54 < 0.6, overhead grows as fast as the work
+
+saved 12 rows -> results/metrics.csv
+
+saved figures/1_time_vs_p.png
+saved figures/2_speedup_vs_p.png
+saved figures/3_efficiency_vs_p.png
+saved figures/4_overhead_vs_p.png
+saved figures/5_dashboard.png
