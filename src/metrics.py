@@ -74,11 +74,30 @@ def compute(raw):
     return pd.DataFrame(rows)
 
 
+def format_table(m):
+    """Fixed-width text table, one block of rows per problem size n."""
+    head = (f"{'n':>13} {'p':>3} {'T_S (s)':>10} {'T_P (s)':>10} {'Speedup':>8} "
+            f"{'Effic.':>7} {'Cost (s)':>10} {'T_o (s)':>10} {'f (Amdahl)':>11}")
+    line = "-" * len(head)
+    out = [line, head, line]
+    last_n = None
+    for r in m.itertuples(index=False):
+        if last_n is not None and r.n != last_n:
+            out.append(line)
+        last_n = r.n
+        f = "-" if pd.isna(r.serial_fraction) else f"{r.serial_fraction:.4f}"
+        out.append(f"{r.n:>13,} {r.p:>3} {r.T_S:>10.4f} {r.T_P:>10.4f} {r.speedup:>8.3f} "
+                   f"{r.efficiency:>7.3f} {r.cost:>10.4f} {r.overhead:>10.4f} {f:>11}")
+    out.append(line)
+    return "\n".join(out)
+
+
 def main():
     raw = pd.read_csv(RESULTS / "raw_timings.csv")
     m = compute(raw)
     m.to_csv(RESULTS / "metrics.csv", index=False, float_format="%.6f")
-    print(m)
+    print("\nPerformance metrics (T_S and T_P are medians of the runs)")
+    print(format_table(m))
     print(f"\nsaved {len(m)} rows -> results/metrics.csv")
     return m
 
