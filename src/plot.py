@@ -42,7 +42,7 @@ plt.rcParams.update({
 def n_label(n):
     n = int(n)
     exp = len(str(n)) - 1
-    return f"n = 10^{exp}" if n == 10 ** exp else f"n = {n:,}"
+    return f"n = $10^{{{exp}}}$" if n == 10 ** exp else f"n = {n:,}"
 
 
 def _lines_per_n(ax, m, col):

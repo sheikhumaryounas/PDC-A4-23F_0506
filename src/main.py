@@ -3,10 +3,14 @@ Q3 - Parallel Performance Analyzer (driver)
 
     python src/main.py
 
-Times the serial version (T_S) and the parallel version (T_P) for
-n = 10^6, 10^7, 10^8 and p = 1, 2, 4, 8. Every configuration is run 5 times
-and every single run is written to results/raw_timings.csv
-(columns: workload, n, p, run, time_sec). Serial rows have p = 1.
+One command runs the whole analyser:
+  1. Part A - times the serial version (T_S) and the parallel version (T_P)
+     for n = 10^6, 10^7, 10^8 and p = 1, 2, 4, 8, every configuration 5 times,
+     and writes every run to results/raw_timings.csv
+     (columns: workload, n, p, run, time_sec; serial rows have p = 1)
+  2. Part B - metrics.py  -> results/metrics.csv + table in the terminal
+  3. Part C - plot.py     -> figures/*.png
+Everything printed is also saved to results/run_log.txt.
 
 Options (mainly for quick tests):
     python src/main.py --runs 2 --sizes 1000000 10000000 --procs 1 2
@@ -14,8 +18,13 @@ Options (mainly for quick tests):
 import argparse
 import csv
 import os
+import platform
+import sys
 import time
+from datetime import datetime
 from pathlib import Path
+
+import numpy as np
 
 from pi_serial import count_hits
 from pi_parallel import estimate_pi_parallel, start_pool
@@ -97,18 +106,55 @@ def parse_args(argv=None):
     return ap.parse_args(argv)
 
 
+class Tee:
+    """Write everything printed to the terminal into a log file as well."""
+
+    def __init__(self, path):
+        self.file = open(path, "w", encoding="utf-8")
+        self.stdout = sys.stdout
+
+    def write(self, s):
+        self.stdout.write(s)
+        self.file.write(s)
+
+    def flush(self):
+        self.stdout.flush()
+        self.file.flush()
+
+    def close(self):
+        sys.stdout = self.stdout
+        self.file.close()
+
+
 def main(argv=None):
     args = parse_args(argv)
     RESULTS.mkdir(exist_ok=True)
-    print(f"Monte-Carlo pi | sizes={args.sizes} procs={args.procs} runs={args.runs} "
-          f"| logical CPUs={os.cpu_count()}")
+    tee = Tee(RESULTS / "run_log.txt")
+    sys.stdout = tee
+    try:
+        print(f"{datetime.now():%Y-%m-%d %H:%M}  {platform.platform()}  "
+              f"Python {platform.python_version()}  numpy {np.__version__}")
+        print(f"Monte-Carlo pi | sizes={args.sizes} procs={args.procs} runs={args.runs} "
+              f"| logical CPUs={os.cpu_count()}")
 
-    t0 = time.perf_counter()
-    rows, startup = benchmark(args.sizes, args.procs, args.runs)
-    save_raw(rows, RESULTS / "raw_timings.csv")
-    save_startup(startup, RESULTS / "pool_startup.csv")
-    print(f"\nsaved {len(rows)} rows -> results/raw_timings.csv "
-          f"(benchmark took {time.perf_counter() - t0:.1f} s)")
+        # Part A: benchmark
+        t0 = time.perf_counter()
+        rows, startup = benchmark(args.sizes, args.procs, args.runs)
+        save_raw(rows, RESULTS / "raw_timings.csv")
+        save_startup(startup, RESULTS / "pool_startup.csv")
+        print(f"\nsaved {len(rows)} rows -> results/raw_timings.csv "
+              f"(benchmark took {time.perf_counter() - t0:.1f} s)")
+
+        # Part B + C, so one command does everything. Imported here and not
+        # at the top: with the Windows "spawn" start method every worker
+        # re-imports this file, and they don't need pandas / matplotlib.
+        import metrics
+        import plot
+        metrics.main()
+        print()
+        plot.main()
+    finally:
+        tee.close()
 
 
 if __name__ == "__main__":
